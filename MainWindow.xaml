@@ -5,52 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_IDOT_Project"
         mc:Ignorable="d"
-        Title="Article Browser" Height="450" Width="800" Padding="10,10,10,10">
-    <Canvas>
+        MinHeight="250"
+        Height="450"
+        MinWidth="560"
+        Width="800"
+        Icon="Resources/icon.ico"
+        Title="Article Browser">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition MinWidth="5"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition MinHeight="148"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        
         <Button Name="ButtonToHomePage"
-                Canvas.Top="8"
-                Canvas.Left="10"
+                Grid.Column="1"
+                Grid.Row="1"
                 Width="75"
-                Height="22"
+                Height="30"
                 Click="ButtonToHomePage_Click">
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Resources/home.png" />
-                <TextBlock>Home</TextBlock>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Home</TextBlock>
             </StackPanel>
         </Button>
 
         <Button Name="ButtonToNewPage"
-                Canvas.Top="8"
-                Canvas.Left="90"
+                Grid.Column="3"
+                Grid.Row="1"
                 Width="100"
-                Height="22"
+                Height="30"
                 Click="ButtonToNewPage_Click">
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Resources/write.png" />
-                <TextBlock>New Article</TextBlock>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">New Article</TextBlock>
             </StackPanel>
         </Button>
 
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="5"
+                    Grid.Row="1">
+            <TextBlock Name="Username" HorizontalAlignment="Right" FontSize="10" FontWeight="Bold"></TextBlock>
+            <TextBlock Name="Userprivilege" HorizontalAlignment="Right" FontSize="8"></TextBlock>
+        </StackPanel>
+
         <Button Name="ButtonToCredentials"
-                Canvas.Top="8"
-                Canvas.Right="10"
+                Grid.Column="7"
+                Grid.Row="1"
                 Width="130"
-                Height="22"
+                Height="30"
                 Click="ButtonToCredentials_Click">
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Resources/signin.png" />
-                <TextBlock Name="ButtonToCredentrialsText">Login / Register</TextBlock>
+                <Image Name="ButtonToCredentialsIcon" />
+                <TextBlock Name="ButtonToCredentialsText" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             </StackPanel>
         </Button>
 
         <Frame Name="PageLoader"
-               Canvas.Top="40"
-               Canvas.Left="10"
-               Canvas.Right="10"
-               Canvas.Bottom="10"
+               Grid.Column="1"
+               Grid.ColumnSpan="7"
+               Grid.Row="3"
                NavigationUIVisibility="Hidden"
                BorderThickness="1"
                BorderBrush="DarkGray"
-               Source="Views/WIPPage.xaml" Width="780" Height="380"/>
-    </Canvas>
+               Source="Views/WIPPage.xaml"/>
+    </Grid>
 </Window>

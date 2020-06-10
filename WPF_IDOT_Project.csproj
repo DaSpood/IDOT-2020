@@ -10,10 +10,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\home.png" />
+    <None Remove="Resources\icon.ico" />
+    <None Remove="Resources\logout.png" />
+    <None Remove="Resources\user.png" />
+    <None Remove="Resources\write.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\logout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\write.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DataAccess\" />
     <Folder Include="BusinessManagement\" />
     <Folder Include="Dbo\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>

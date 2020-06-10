@@ -23,6 +23,8 @@ namespace WPF_IDOT_Project
         public MainWindow()
         {
             InitializeComponent();
+            ButtonToCredentialsText.Text = "Login / Register";
+            ButtonToCredentialsIcon.Source = new BitmapImage(new Uri("Resources/user.png", UriKind.Relative));
         }
 
         private void ButtonToHomePage_Click(object sender, RoutedEventArgs e)
@@ -41,6 +43,8 @@ namespace WPF_IDOT_Project
         {
             PageLoader.Navigate(new Uri("Views/WIPPage.xaml", UriKind.Relative));
             //PageLoader.Navigate(new Uri("Views/CredentialsPage.xaml", UriKind.Relative));
+
+            //Note: max username length: 40
         }
     }
 }
