@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IDOT_IDOT
+namespace WPF_IDOT_Project
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
