@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_IDOT_Project.Models;
 
 namespace WPF_IDOT_Project.Views
 {
@@ -21,6 +22,9 @@ namespace WPF_IDOT_Project.Views
         public ArticleListPage()
         {
             InitializeComponent();
+
+            Article[] articles = null; // BusinessManagement request for articles
+            this.Articles.ItemsSource = articles;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using WPF_IDOT_Project.Models;
 
 namespace WPF_IDOT_Project.ViewModels
 {
@@ -63,15 +64,15 @@ namespace WPF_IDOT_Project.ViewModels
 
         // Setters
 
-        public void Login(bool isAdmin, string username)
+        public void Login(User user)
         {
             // FIXME : replace parameters with a 'User' model
             if (_isLogged)
                 throw new Exception("Tried to login when already connected");
 
             _isLogged = true;
-            _isAdmin = isAdmin;
-            _username = username;
+            _isAdmin = user.Admin;
+            _username = user.Name;
 
             OnPropertyChange("CredIcon");
             OnPropertyChange("CredStr");

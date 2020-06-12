@@ -1,21 +1,55 @@
-CREATE TABLE Users
-(
-    ID BIGINT(16)    UNIQUE NOT NULL AUTO_INCREMENT,
-    Name VARCHAR(40) UNIQUE NOT NULL,
-    Password VARCHAR(32)    NOT NULL,
-    Admin BIT DEFAULT FALSE NOT NULL,
-    PRIMARY KEY(ID)
-);
-
-CREATE TABLE Articles
-(
-    ID BIGINT(16)     UNIQUE NOT NULL AUTO_INCREMENT,
-    Title VARCHAR(40) UNIQUE         ,
-    Author VARCHAR(40)       NOT NULL,
-    `Date` DATE              NOT NULL,
-    Image LONGBLOB           NOT NULL,
-    Text TEXT                NOT NULL,
-    Viewcount BIGINT         NOT NULL,
-    PRIMARY KEY(ID),
-    FOREIGN KEY (Author) REFERENCES Users(Name)
-);
+USE [master]
+GO
+/****** Object:		Database [IdotProject]
+******/
+CREATE DATABASE [IdotProject]
+GO
+USE [IdotProject]
+GO
+/****** Object:		Table [models].[T_User]
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [models].[T_User] (
+	[Id]		[bigint]		IDENTITY(1,1)	NOT NULL,
+	[Name]		[nvarchar](40)	UNIQUE			NOT NULL,
+	[Password]	[nvarchar](32)	UNIQUE			NOT NULL,
+	[Admin]		[bit]			DEFAULT 0		NOT NULL,
+	CONSTRAINT [PK_T_User] PRIMARY KEY CLUSTERED
+	(
+		[Id] ASC
+	) WITH (
+		PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON
+	) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:		Table [models].[T_Article]
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [models].[T_Article] (
+	[Id]		[bigint]		IDENTITY(1,1)	NOT NULL,
+	[Title]		[nvarchar](40),
+	[IdAuthor]	[bigint]						NOT NULL,
+	[Date]		[date]							NOT NULL,
+	[Image]		[image]							NOT NULL,
+	[Text]		[text]							NOT NULL,
+	[Viewcount] [bigint]		DEFAULT 0		NOT NULL,
+	CONSTRAINT [PK_T_User] PRIMARY KEY CLUSTERED
+	(
+		[Id] ASC
+	) WITH (
+		PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON
+	) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [model].[T_Article] WITH CHECK ADD CONSTRAINT [FK_T_Article_T_User]
+FOREIGN KEY ([IdAuthor])
+REFERENCES [model].[T_User] ([Id])
+GO
+ALTER TABLE [model].[T_Article] CHECK CONSTRAINT [FK_T_Article_T_User]
+GO
