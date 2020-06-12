@@ -12,7 +12,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [models].[T_User] (
+CREATE TABLE [dbo].[T_User] (
 	[Id]		[bigint]		IDENTITY(1,1)	NOT NULL,
 	[Name]		[nvarchar](40)	UNIQUE			NOT NULL,
 	[Password]	[nvarchar](32)	UNIQUE			NOT NULL,
@@ -31,7 +31,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [models].[T_Article] (
+CREATE TABLE [dbo].[T_Article] (
 	[Id]		[bigint]		IDENTITY(1,1)	NOT NULL,
 	[Title]		[nvarchar](40),
 	[IdAuthor]	[bigint]						NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE [models].[T_Article] (
 	[Image]		[image]							NOT NULL,
 	[Text]		[text]							NOT NULL,
 	[Viewcount] [bigint]		DEFAULT 0		NOT NULL,
-	CONSTRAINT [PK_T_User] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_T_Article] PRIMARY KEY CLUSTERED
 	(
 		[Id] ASC
 	) WITH (
@@ -47,9 +47,9 @@ CREATE TABLE [models].[T_Article] (
 	) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-ALTER TABLE [model].[T_Article] WITH CHECK ADD CONSTRAINT [FK_T_Article_T_User]
+ALTER TABLE [dbo].[T_Article] WITH CHECK ADD CONSTRAINT [FK_T_Article_T_User]
 FOREIGN KEY ([IdAuthor])
-REFERENCES [model].[T_User] ([Id])
+REFERENCES [dbo].[T_User] ([Id])
 GO
-ALTER TABLE [model].[T_Article] CHECK CONSTRAINT [FK_T_Article_T_User]
+ALTER TABLE [dbo].[T_Article] CHECK CONSTRAINT [FK_T_Article_T_User]
 GO
