@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_IDOT_Project.ViewModels;
 
 namespace WPF_IDOT_Project
 {
@@ -20,11 +21,18 @@ namespace WPF_IDOT_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
-            ButtonToCredentialsText.Text = "Login / Register";
-            ButtonToCredentialsIcon.Source = new BitmapImage(new Uri("Resources/user.png", UriKind.Relative));
+
+            // Setup viewmodel for bindings
+            _viewModel = new MainViewModel();
+            DataContext = _viewModel;
+
+            // Load default page
+            PageLoader.Source = new Uri("Views/WIPPage.xaml", UriKind.Relative);
         }
 
         private void ButtonToHomePage_Click(object sender, RoutedEventArgs e)
@@ -41,10 +49,8 @@ namespace WPF_IDOT_Project
 
         private void ButtonToCredentials_Click(object sender, RoutedEventArgs e)
         {
-            PageLoader.Navigate(new Uri("Views/WIPPage.xaml", UriKind.Relative));
+            _viewModel.swapState();
             //PageLoader.Navigate(new Uri("Views/CredentialsPage.xaml", UriKind.Relative));
-
-            //Note: max username length: 40
         }
     }
 }

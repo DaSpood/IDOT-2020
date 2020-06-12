@@ -12,8 +12,8 @@
   <ItemGroup>
     <None Remove="Resources\home.png" />
     <None Remove="Resources\icon.ico" />
+    <None Remove="Resources\login.png" />
     <None Remove="Resources\logout.png" />
-    <None Remove="Resources\user.png" />
     <None Remove="Resources\write.png" />
   </ItemGroup>
 
@@ -27,7 +27,7 @@
     <Resource Include="Resources\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\user.png">
+    <Resource Include="Resources\login.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\write.png">
@@ -38,7 +38,7 @@
   <ItemGroup>
     <Folder Include="DataAccess\" />
     <Folder Include="BusinessManagement\" />
-    <Folder Include="Dbo\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>

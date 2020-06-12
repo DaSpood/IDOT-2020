@@ -58,8 +58,8 @@
         <StackPanel Orientation="Vertical"
                     Grid.Column="5"
                     Grid.Row="1">
-            <TextBlock Name="Username" HorizontalAlignment="Right" FontSize="10" FontWeight="Bold"></TextBlock>
-            <TextBlock Name="Userprivilege" HorizontalAlignment="Right" FontSize="8"></TextBlock>
+            <TextBlock Name="Username" HorizontalAlignment="Right" FontSize="10" FontWeight="Bold" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Name="Userprivilege" HorizontalAlignment="Right" FontSize="8" Text="{Binding AdminStr, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <Button Name="ButtonToCredentials"
@@ -69,8 +69,8 @@
                 Height="30"
                 Click="ButtonToCredentials_Click">
             <StackPanel Orientation="Horizontal">
-                <Image Name="ButtonToCredentialsIcon" />
-                <TextBlock Name="ButtonToCredentialsText" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <Image Name="ButtonToCredentialsIcon" Source="{Binding CredIcon, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Name="ButtonToCredentialsText" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CredStr, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </Button>
 
@@ -80,7 +80,6 @@
                Grid.Row="3"
                NavigationUIVisibility="Hidden"
                BorderThickness="1"
-               BorderBrush="DarkGray"
-               Source="Views/WIPPage.xaml"/>
+               BorderBrush="DarkGray"/>
     </Grid>
 </Window>
