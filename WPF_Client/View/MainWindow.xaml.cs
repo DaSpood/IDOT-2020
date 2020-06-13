@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Client.Dbo;
 using WPF_Client.Viewmodel;
 
 namespace WPF_Client.View
@@ -20,7 +21,7 @@ namespace WPF_Client.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly MainViewModel _viewModel;
+        private MainViewModel _viewModel;
 
         public MainWindow()
         {
@@ -34,6 +35,11 @@ namespace WPF_Client.View
             PageLoader.Source = new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute);
         }
 
+        public User GetUser()
+        {
+            return _viewModel.User;
+        }
+
         private void ButtonToHomePage_Click(object sender, RoutedEventArgs e)
         {
             PageLoader.Navigate(new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute));
@@ -43,7 +49,6 @@ namespace WPF_Client.View
 
         private void ButtonToNewPage_Click(object sender, RoutedEventArgs e)
         {
-            //PageLoader.Navigate(new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute));
             PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleWritePage.xaml", UriKind.RelativeOrAbsolute));
             ButtonToCredentials.IsEnabled = false;
         }

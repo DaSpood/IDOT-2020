@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,67 +12,54 @@ namespace WPF_Client.Viewmodel
 {
     class MainViewModel : INotifyPropertyChanged
     {
-        private string _username;
+        private User _user;
 
         private readonly BitmapImage _loginIcon;
         private readonly BitmapImage _logoutIcon;
-
-        private bool _isLogged;
-        private bool _isAdmin;
 
         // Getters
 
         public string Username
         {
-            get { return _username; }
+            get { return _user != null ? _user.Name : ""; }
         }
 
         public string AdminStr
         {
-            get
-            {
-                if (_isAdmin)
-                    return "Admin";
-                return "";
-            }
+            get { return _user != null && _user.Admin ? "Admin" : ""; }
         }
 
         public string CredStr
         {
-            get
-            {
-                if (_isLogged)
-                    return "Logout";
-                return "Login / Register";
-            }
+            get { return _user != null ? "Logout" : "Login / Register"; }
         }
 
         public BitmapImage CredIcon
         {
-            get
-            {
-                if (_isLogged)
-                    return _logoutIcon;
-                return _loginIcon;
-            }
+            get { return _user != null ? _logoutIcon : _loginIcon; }
         }
 
         public bool IsAdmin
         {
-            get { return _isAdmin; }
+            get { return _user != null && _user.Admin; }
+        }
+
+        public User User
+        {
+            get { return _user; }
         }
 
         // Setters
 
         public void Login(User user)
         {
-            // FIXME : replace parameters with a 'User' model
-            if (_isLogged)
+            if (_user != null)
                 throw new Exception("Tried to login when already connected");
 
-            _isLogged = true;
-            _isAdmin = user.Admin;
-            _username = user.Name;
+            if (user == null)
+                throw new Exception("Invalid user");
+
+            _user = user;
 
             OnPropertyChange("CredIcon");
             OnPropertyChange("CredStr");
@@ -82,12 +70,10 @@ namespace WPF_Client.Viewmodel
 
         public void Logout()
         {
-            if (!_isLogged)
+            if (_user == null)
                 throw new Exception("Tried to logout when already disconnected");
 
-            _isLogged = false;
-            _isAdmin = false;
-            _username = "";
+            _user = null;
 
             OnPropertyChange("CredIcon");
             OnPropertyChange("CredStr");
@@ -100,11 +86,9 @@ namespace WPF_Client.Viewmodel
 
         public MainViewModel()
         {
-            _username = "";
+            _user = null;
             _loginIcon = new BitmapImage(new Uri("pack://application:,,,/Resource/Img/login.png", UriKind.RelativeOrAbsolute));
             _logoutIcon = new BitmapImage(new Uri("pack://application:,,,/Resource/Img/logout.png", UriKind.RelativeOrAbsolute));
-            _isLogged = false;
-            _isAdmin = false;
         }
 
         /// <summary>
@@ -112,10 +96,10 @@ namespace WPF_Client.Viewmodel
         /// </summary>
         public void swapState()
         {
-            if (_isLogged)
+            if (_user != null)
                 Logout();
             else
-                Login(new User("testname_admin", true));
+                Login(new User(1, "testname_admin", true));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

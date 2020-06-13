@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Client.Dbo;
+using WPF_Client.Viewmodel;
 
 namespace WPF_Client.View
 {
@@ -22,9 +24,15 @@ namespace WPF_Client.View
     /// </summary>
     public partial class ArticleWritePage : Page
     {
+        private ArticleWriteViewModel _viewmodel;
+
         public ArticleWritePage()
         {
             InitializeComponent();
+
+            //Setup viewmodel for bindings
+            _viewmodel = new ArticleWriteViewModel();
+            DataContext = _viewmodel;
         }
 
         private void ExplorerButton_Click(object sender, RoutedEventArgs e)
@@ -49,7 +57,7 @@ namespace WPF_Client.View
                     else
                     {
                         ArticleImageLink.Text = "File: " + file + "\t\tSize: " + Math.Round(size, 2) + "MB";
-                        //TODO register the image in the articlebuilder
+                        _viewmodel.ArticleImage = image;
                     }
                 }
                 catch (IOException)
@@ -57,12 +65,15 @@ namespace WPF_Client.View
                     ArticleImageLink.Text = "There was an error while opening the file";
                 }
             }
-
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            User author = ((MainWindow)Window.GetWindow(this)).GetUser();
+            byte[] image = _viewmodel.ArticleImage;
+            string title = _viewmodel.ArticleTitle;
+            string text = _viewmodel.ArticleText;
+            //TODO
         }
     }
 }

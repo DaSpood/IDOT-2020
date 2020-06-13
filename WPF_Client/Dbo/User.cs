@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace WPF_Client.Dbo
 {
-    class User
+    public class User
     {
+        private long _id;
         private string _name;
         private bool _admin;
+
+        public long Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
         public string Name
         {
@@ -23,8 +30,9 @@ namespace WPF_Client.Dbo
             set { _admin = value; }
         }
 
-        public User(string name = "", bool admin = false)
+        public User(long id, string name, bool admin)
         {
+            _id = id;
             _name = name;
             _admin = admin;
         }

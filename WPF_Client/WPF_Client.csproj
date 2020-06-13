@@ -102,6 +102,7 @@
     <Compile Include="DataAccess\User.cs" />
     <Compile Include="Dbo\Article.cs" />
     <Compile Include="Dbo\User.cs" />
+    <Compile Include="Viewmodel\ArticleWriteViewModel.cs" />
     <Compile Include="Viewmodel\MainViewModel.cs" />
     <Compile Include="View\ArticleListPage.xaml.cs">
       <DependentUpon>ArticleListPage.xaml</DependentUpon>
