@@ -31,25 +31,28 @@ namespace WPF_Client.View
             DataContext = _viewModel;
 
             // Load default page
-            PageLoader.Source = new Uri("../View/WIPPage.xaml", UriKind.Relative);
+            PageLoader.Source = new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute);
         }
 
         private void ButtonToHomePage_Click(object sender, RoutedEventArgs e)
         {
-            PageLoader.Navigate(new Uri("../View/WIPPage.xaml", UriKind.Relative));
-            //PageLoader.Navigate(new Uri("../View/ArticleListPage.xaml", UriKind.Relative));
+            PageLoader.Navigate(new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute));
+            //PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleListPage.xaml", UriKind.RelativeOrAbsolute));
+            ButtonToCredentials.IsEnabled = true;
         }
 
         private void ButtonToNewPage_Click(object sender, RoutedEventArgs e)
         {
-            PageLoader.Navigate(new Uri("../View/WIPPage.xaml", UriKind.Relative));
-            //PageLoader.Navigate(new Uri("../View/ArticleNewPage.xaml", UriKind.Relative));
+            //PageLoader.Navigate(new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute));
+            PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleWritePage.xaml", UriKind.RelativeOrAbsolute));
+            ButtonToCredentials.IsEnabled = false;
         }
 
         private void ButtonToCredentials_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.swapState();
-            //PageLoader.Navigate(new Uri("../View/CredentialsPage.xaml", UriKind.Relative));
+            //PageLoader.Navigate(new Uri("pack://application:,,,/View/CredentialsPage.xaml", UriKind.RelativeOrAbsolute));
+            ButtonToCredentials.IsEnabled = true;
         }
     }
 }

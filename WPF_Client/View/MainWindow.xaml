@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client.View"
         mc:Ignorable="d"
-        MinHeight="250"
-        Height="450"
+        MinHeight="500"
+        Height="500"
         MinWidth="560"
         Width="800"
         Icon="pack://application:,,,/Resource/Img/Icon.ico"
@@ -27,7 +27,7 @@
             <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="10"/>
-            <RowDefinition MinHeight="148"/>
+            <RowDefinition MinHeight="350"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
@@ -48,6 +48,7 @@
                 Grid.Row="1"
                 Width="100"
                 Height="30"
+                IsEnabled="{Binding IsAdmin, UpdateSourceTrigger=PropertyChanged}"
                 Click="ButtonToNewPage_Click">
             <StackPanel Orientation="Horizontal">
                 <Image Source="pack://application:,,,/Resource/Img/write.png" />

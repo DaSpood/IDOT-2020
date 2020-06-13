@@ -76,6 +76,7 @@ namespace WPF_Client.Viewmodel
             OnPropertyChange("CredIcon");
             OnPropertyChange("CredStr");
             OnPropertyChange("AdminStr");
+            OnPropertyChange("IsAdmin");
             OnPropertyChange("Username");
         }
 
@@ -91,6 +92,7 @@ namespace WPF_Client.Viewmodel
             OnPropertyChange("CredIcon");
             OnPropertyChange("CredStr");
             OnPropertyChange("AdminStr");
+            OnPropertyChange("IsAdmin");
             OnPropertyChange("Username");
         }
 
