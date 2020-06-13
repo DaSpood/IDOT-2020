@@ -99,7 +99,7 @@ namespace WPF_Client.Viewmodel
             if (_user != null)
                 Logout();
             else
-                Login(new User(1, "testname_admin", true));
+                Login(new User("testname_admin", true));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

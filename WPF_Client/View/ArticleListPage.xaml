@@ -14,8 +14,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Source="{Binding Image}"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Description}"/>
+                        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Source="{Binding ImageSource}"/>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Title}"/>
+                            <TextBlock TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Text}"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

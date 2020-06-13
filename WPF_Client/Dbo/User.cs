@@ -36,5 +36,12 @@ namespace WPF_Client.Dbo
             _name = name;
             _admin = admin;
         }
+
+        public User(string name, bool admin)
+        {
+            _id = -1;
+            _name = name;
+            _admin = admin;
+        }
     }
 }

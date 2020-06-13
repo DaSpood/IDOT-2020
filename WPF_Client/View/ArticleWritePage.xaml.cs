@@ -69,9 +69,9 @@ namespace WPF_Client.View
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            string title = _viewmodel.ArticleTitle;
             User author = ((MainWindow)Window.GetWindow(this)).GetUser();
             byte[] image = _viewmodel.ArticleImage;
-            string title = _viewmodel.ArticleTitle;
             string text = _viewmodel.ArticleText;
             //TODO
         }
