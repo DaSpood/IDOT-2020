@@ -32,7 +32,7 @@ namespace WPF_Client.View
             DataContext = _viewModel;
 
             // Load default page
-            PageLoader.Source = new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute);
+            PageLoader.Source = new Uri("pack://application:,,,/View/ArticleListPage.xaml", UriKind.RelativeOrAbsolute);
         }
 
         public User GetUser()
@@ -40,10 +40,18 @@ namespace WPF_Client.View
             return _viewModel.User;
         }
 
+        public void NavigateToArticle(Article article)
+        {
+            PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleDetailPage.xaml", UriKind.RelativeOrAbsolute));
+            ButtonToCredentials.IsEnabled = true;
+
+            var page = PageLoader.Content as ArticleDetailPage;
+            page.LoadArticle(article);
+        }
+
         private void ButtonToHomePage_Click(object sender, RoutedEventArgs e)
         {
-            PageLoader.Navigate(new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute));
-            //PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleListPage.xaml", UriKind.RelativeOrAbsolute));
+            PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleListPage.xaml", UriKind.RelativeOrAbsolute));
             ButtonToCredentials.IsEnabled = true;
         }
 
@@ -56,8 +64,11 @@ namespace WPF_Client.View
         private void ButtonToCredentials_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.swapState();
-            //PageLoader.Navigate(new Uri("pack://application:,,,/View/CredentialsPage.xaml", UriKind.RelativeOrAbsolute));
-            ButtonToCredentials.IsEnabled = true;
+            if (_viewModel.User != null)
+            {
+                PageLoader.Navigate(new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute));
+                //PageLoader.Navigate(new Uri("pack://application:,,,/View/CredentialsPage.xaml", UriKind.RelativeOrAbsolute));
+            }
         }
     }
 }

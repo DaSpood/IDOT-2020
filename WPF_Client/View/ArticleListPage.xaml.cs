@@ -28,5 +28,10 @@ namespace WPF_Client.View
             Article[] articles = null; // BusinessManagement request for a list of Dbo.Article
             this.Articles.ItemsSource = articles;
         }
+
+        private void Articles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((MainWindow)Window.GetWindow(this)).NavigateToArticle((Article)Articles.SelectedItem);
+        }
     }
 }
