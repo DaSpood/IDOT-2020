@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:WPF_Client.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      ShowsNavigationUI="False"
       Title="ArticleWritePage">
 
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

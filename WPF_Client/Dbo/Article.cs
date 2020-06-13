@@ -26,7 +26,7 @@ namespace WPF_Client.Dbo
 
         public string Title
         {
-            get { return (_title != "") ? (_id.ToString() + ": " + _title) : _id.ToString(); }
+            get { return _title != "" ? _title : "Article #" + _id.ToString(); }
             set { _title = value; }
         }
 

@@ -30,7 +30,7 @@ namespace WPF_Client.View
         {
             InitializeComponent();
 
-            //Setup viewmodel for bindings
+            // Setup viewmodel for bindings
             _viewmodel = new ArticleWriteViewModel();
             DataContext = _viewmodel;
         }

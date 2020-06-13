@@ -102,8 +102,12 @@
     <Compile Include="DataAccess\User.cs" />
     <Compile Include="Dbo\Article.cs" />
     <Compile Include="Dbo\User.cs" />
+    <Compile Include="Viewmodel\ArticleDetailViewModel.cs" />
     <Compile Include="Viewmodel\ArticleWriteViewModel.cs" />
     <Compile Include="Viewmodel\MainViewModel.cs" />
+    <Compile Include="View\ArticleDetailPage.xaml.cs">
+      <DependentUpon>ArticleDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ArticleListPage.xaml.cs">
       <DependentUpon>ArticleListPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +191,10 @@
     <Content Include="Resource\database.sql" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\ArticleDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ArticleListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
