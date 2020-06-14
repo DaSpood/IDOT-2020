@@ -44,8 +44,19 @@ namespace WPF_Client.View
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             User generated = _viewmodel.GenerateLoginUser();
-            //FIXME: fetch _viewmodel.GenerateLoginUser() from database and set it as _user
-            _user = generated; //FIXME
+
+            // Fetch the registered user to login immediately
+            _user = BusinessManagement.User.GetUserByCredentials(generated.Name, generated.Password);
+
+            // Warn the user if login failed
+            if (_user == null)
+            {
+                MessageBox.Show("Error: Invalid credentials.",
+                    "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Close the credential window if login was successful
             this.DialogResult = true;
             this.Close();
         }
@@ -53,8 +64,29 @@ namespace WPF_Client.View
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
             User generated = _viewmodel.GenerateRegisterUser();
-            //FIXME: post _viewmodel.GenerateRegisterUser() to database then fetch it back and set it as _user
-            _user = generated; //FIXME
+
+            // Verify that this user does not already exist
+            if (BusinessManagement.User.GetUserByName(generated.Name) != null)
+            {
+                MessageBox.Show("Error: This username is already taken.",
+                    "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Register the new user
+            if (!BusinessManagement.User.AddUser(generated))
+            {
+                MessageBox.Show("Error: Could not register. Please try again.",
+                    "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Fetch the registered user to login immediately and inform user
+            MessageBox.Show("Registration success ! You are now logged in !",
+                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            _user = BusinessManagement.User.GetUserByCredentials(generated.Name, generated.Password);
+
+            // Close the credential window if login was successful
             this.DialogResult = true;
             this.Close();
         }

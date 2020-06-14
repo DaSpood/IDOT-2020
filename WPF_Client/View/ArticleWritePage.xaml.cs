@@ -52,7 +52,11 @@ namespace WPF_Client.View
                     double size = (double)image.Length / 1024 / 1024;
 
                     if (size > 2)
-                        ArticleImageLink.Text = "This file is too big, maximum size: 2MB";
+                    {
+                        ArticleImageLink.Text = "";
+                        System.Windows.MessageBox.Show("Error: This file is too big, maximum size: 2MB",
+                            "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                     else
                     {
                         ArticleImageLink.Text = "File: " + file + "\t\tSize: " + Math.Round(size, 2) + "MB";
@@ -61,7 +65,9 @@ namespace WPF_Client.View
                 }
                 catch (IOException)
                 {
-                    ArticleImageLink.Text = "There was an error while opening the file";
+                    ArticleImageLink.Text = "";
+                    System.Windows.MessageBox.Show("Error: could not load this file. Please try a different file.",
+                        "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
@@ -69,10 +75,21 @@ namespace WPF_Client.View
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             string title = _viewmodel.ArticleTitle;
-            User author = ((MainWindow)Window.GetWindow(this)).User;
+            long author = ((MainWindow)Window.GetWindow(this)).User.Id;
             byte[] image = _viewmodel.ArticleImage;
             string text = _viewmodel.ArticleText;
-            //FIXME: Do BusinessManagement request to post new article
+
+            Article article = new Article(title, author, image, text);
+            if (!BusinessManagement.Article.AddArticle(article))
+            {
+                System.Windows.MessageBox.Show("Error: Could not post the article. Please try again.",
+                    "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Article successfuly posted !",
+                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

@@ -25,13 +25,20 @@ namespace WPF_Client.View
         {
             InitializeComponent();
 
-            Article[] articles = null; //FIXME: Do BusinessManagement request for a list of Dbo.Article
+            Article[] articles = BusinessManagement.Article.GetArticleList().ToArray();
             this.Articles.ItemsSource = articles;
         }
 
         private void Articles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((MainWindow)Window.GetWindow(this)).NavigateToArticle((Article)Articles.SelectedItem);
+            Article article = (Article)Articles.SelectedItems[0];
+            article.Viewcount = article.Viewcount + 1;
+            if (!BusinessManagement.Article.IncrementArticleViewcountById(article.Id))
+            {
+                MessageBox.Show("Warning: could not update view counter for this article",
+                    "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            ((MainWindow)Window.GetWindow(this)).NavigateToArticle(article);
         }
     }
 }

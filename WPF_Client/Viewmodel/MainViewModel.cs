@@ -54,10 +54,10 @@ namespace WPF_Client.Viewmodel
         public void Login(User user)
         {
             if (_user != null)
-                throw new Exception("Tried to login when already connected");
+                throw new Exception("Login: already logged");
 
             if (user == null)
-                throw new Exception("Invalid user");
+                throw new Exception("Login: invalid user");
 
             _user = user;
 

@@ -12,6 +12,7 @@ namespace WPF_Client.Viewmodel
     class ArticleDetailViewModel : INotifyPropertyChanged
     {
         private Article _article;
+        private User _author;
 
         // Getters/Setters
 
@@ -23,6 +24,7 @@ namespace WPF_Client.Viewmodel
                 if (_article != value)
                 {
                     _article = value;
+                    _author = BusinessManagement.User.GetUserById(_article.IdAuthor);
                     OnPropertyChange("Title");
                     OnPropertyChange("Author");
                     OnPropertyChange("Date");
@@ -40,10 +42,7 @@ namespace WPF_Client.Viewmodel
 
         public string Author
         {
-            get
-            {
-                return "TODO";
-            }
+            get{ return "By " + _author.Name; }
         }
 
         public string Date
@@ -53,7 +52,7 @@ namespace WPF_Client.Viewmodel
 
         public string Viewcount
         {
-            get { return _article.Viewcount.ToString(); }
+            get { return _article.Viewcount.ToString() + " views"; }
         }
 
         public BitmapSource ImageSource
