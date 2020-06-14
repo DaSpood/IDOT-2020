@@ -91,17 +91,6 @@ namespace WPF_Client.Viewmodel
             _logoutIcon = new BitmapImage(new Uri("pack://application:,,,/Resource/Img/logout.png", UriKind.RelativeOrAbsolute));
         }
 
-        /// <summary>
-        /// Debug function to test that the viewmodel is working
-        /// </summary>
-        public void swapState()
-        {
-            if (_user != null)
-                Logout();
-            else
-                Login(new User("testname_admin", true));
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChange(string propertyName)

@@ -43,8 +43,7 @@ namespace WPF_Client.View
             browser.FilterIndex = 1;
             browser.RestoreDirectory = true;
 
-            DialogResult result = browser.ShowDialog();
-            if (result == DialogResult.OK)
+            if (browser.ShowDialog() == DialogResult.OK)
             {
                 string file = browser.FileName;
                 try
@@ -70,10 +69,10 @@ namespace WPF_Client.View
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             string title = _viewmodel.ArticleTitle;
-            User author = ((MainWindow)Window.GetWindow(this)).GetUser();
+            User author = ((MainWindow)Window.GetWindow(this)).User;
             byte[] image = _viewmodel.ArticleImage;
             string text = _viewmodel.ArticleText;
-            //TODO
+            //FIXME: Do BusinessManagement request to post new article
         }
     }
 }

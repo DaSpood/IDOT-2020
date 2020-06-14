@@ -25,7 +25,7 @@ namespace WPF_Client.View
         {
             InitializeComponent();
 
-            Article[] articles = null; // BusinessManagement request for a list of Dbo.Article
+            Article[] articles = null; //FIXME: Do BusinessManagement request for a list of Dbo.Article
             this.Articles.ItemsSource = articles;
         }
 

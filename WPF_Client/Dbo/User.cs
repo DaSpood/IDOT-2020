@@ -10,6 +10,7 @@ namespace WPF_Client.Dbo
     {
         private long _id;
         private string _name;
+        private string _password;
         private bool _admin;
 
         public long Id
@@ -24,23 +25,23 @@ namespace WPF_Client.Dbo
             set { _name = value; }
         }
 
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; }
+        }
+
         public bool Admin
         {
             get { return _admin; }
             set { _admin = value; }
         }
 
-        public User(long id, string name, bool admin)
+        public User(long id, string name, string password, bool admin)
         {
             _id = id;
             _name = name;
-            _admin = admin;
-        }
-
-        public User(string name, bool admin)
-        {
-            _id = -1;
-            _name = name;
+            _password = password;
             _admin = admin;
         }
     }

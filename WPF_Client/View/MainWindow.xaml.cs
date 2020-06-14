@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -35,9 +36,9 @@ namespace WPF_Client.View
             PageLoader.Source = new Uri("pack://application:,,,/View/ArticleListPage.xaml", UriKind.RelativeOrAbsolute);
         }
 
-        public User GetUser()
+        public User User
         {
-            return _viewModel.User;
+            get { return _viewModel.User; }
         }
 
         public void NavigateToArticle(Article article)
@@ -63,12 +64,14 @@ namespace WPF_Client.View
 
         private void ButtonToCredentials_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.swapState();
-            if (_viewModel.User != null)
+            if (_viewModel.User == null)
             {
-                PageLoader.Navigate(new Uri("pack://application:,,,/View/WIPPage.xaml", UriKind.RelativeOrAbsolute));
-                //PageLoader.Navigate(new Uri("pack://application:,,,/View/CredentialsPage.xaml", UriKind.RelativeOrAbsolute));
+                CredentialWindow credPopup = new CredentialWindow();
+                if (credPopup.ShowDialog() == true)
+                    _viewModel.Login(credPopup.User);
             }
+            else
+                _viewModel.Logout();
         }
     }
 }

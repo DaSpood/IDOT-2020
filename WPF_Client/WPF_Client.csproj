@@ -104,6 +104,7 @@
     <Compile Include="Dbo\User.cs" />
     <Compile Include="Viewmodel\ArticleDetailViewModel.cs" />
     <Compile Include="Viewmodel\ArticleWriteViewModel.cs" />
+    <Compile Include="Viewmodel\CredentialViewModel.cs" />
     <Compile Include="Viewmodel\MainViewModel.cs" />
     <Compile Include="View\ArticleDetailPage.xaml.cs">
       <DependentUpon>ArticleDetailPage.xaml</DependentUpon>
@@ -114,11 +115,11 @@
     <Compile Include="View\ArticleWritePage.xaml.cs">
       <DependentUpon>ArticleWritePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CredentialWindow.xaml.cs">
+      <DependentUpon>CredentialWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\WIPPage.xaml.cs">
-      <DependentUpon>WIPPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resource\Font\password.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -167,9 +171,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\Img\logout.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resource\Img\sanderface.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\Img\write.png">
@@ -203,11 +204,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="View\CredentialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\WIPPage.xaml">
+    <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
