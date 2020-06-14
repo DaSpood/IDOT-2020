@@ -35,9 +35,9 @@ namespace WPF_Client.Viewmodel
             }
         }
 
-        public string Title
+        public string TitleAuto
         {
-            get { return _article.Title; }
+            get { return _article.TitleAuto; }
         }
 
         public string Author
@@ -47,12 +47,12 @@ namespace WPF_Client.Viewmodel
 
         public string Date
         {
-            get { return "On " + _article.Date.ToString(); }
+            get { return "On " + _article.Date.ToString("yyyy-MM-dd HH:mm"); }
         }
 
         public string Viewcount
         {
-            get { return _article.Viewcount.ToString() + " views"; }
+            get { return _article.Viewcount.ToString() + (_article.Viewcount > 1 ? " views" : " view"); }
         }
 
         public BitmapSource ImageSource

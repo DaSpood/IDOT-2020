@@ -74,10 +74,10 @@ namespace WPF_Client.View
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            string title = _viewmodel.ArticleTitle;
+            string title = _viewmodel.ArticleTitle.Trim();
             long author = ((MainWindow)Window.GetWindow(this)).User.Id;
             byte[] image = _viewmodel.ArticleImage;
-            string text = _viewmodel.ArticleText;
+            string text = _viewmodel.ArticleText.Trim();
 
             Article article = new Article(title, author, image, text);
             if (!BusinessManagement.Article.AddArticle(article))
@@ -89,6 +89,10 @@ namespace WPF_Client.View
             {
                 System.Windows.MessageBox.Show("Article successfuly posted !",
                     "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                _viewmodel.ArticleImage = null;
+                _viewmodel.ArticleText = "";
+                _viewmodel.ArticleTitle = "";
+                ArticleImageLink.Text = "Please select an image";
             }
         }
     }

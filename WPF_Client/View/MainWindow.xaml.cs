@@ -43,11 +43,10 @@ namespace WPF_Client.View
 
         public void NavigateToArticle(Article article)
         {
-            PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleDetailPage.xaml", UriKind.RelativeOrAbsolute));
-            ButtonToCredentials.IsEnabled = true;
-
-            var page = PageLoader.Content as ArticleDetailPage;
+            ArticleDetailPage page = new ArticleDetailPage();
             page.LoadArticle(article);
+            PageLoader.Navigate(page);
+            ButtonToCredentials.IsEnabled = true;
         }
 
         private void ButtonToHomePage_Click(object sender, RoutedEventArgs e)

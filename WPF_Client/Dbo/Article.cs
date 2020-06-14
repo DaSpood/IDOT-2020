@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace WPF_Client.Dbo
         private long _id;
         private string _title;
         private long _idAuthor;
-        private System.DateTime _date;
+        private DateTime _date;
         private byte[] _image;
         private string _text;
         private long _viewcount;
@@ -26,8 +27,13 @@ namespace WPF_Client.Dbo
 
         public string Title
         {
-            get { return _title != "" ? _title : "Article #" + _id.ToString(); }
+            get { return _title; }
             set { _title = value; }
+        }
+
+        public string TitleAuto
+        {
+            get { return _title != "" ? _title : "Article #" + _id.ToString(); }
         }
 
         public long IdAuthor
@@ -59,6 +65,18 @@ namespace WPF_Client.Dbo
             set { _text = value; }
         }
 
+        public string TextTrimmed
+        {
+            get
+            {
+                string tmp = _text.Replace('\r', ' ');
+                tmp = tmp.Replace('\n', ' ');
+                if (tmp.Length > 60)
+                    return tmp.Substring(0, 60) + "...";
+                return tmp;
+            }
+        }
+
         public long Viewcount
         {
             get { return _viewcount; }
@@ -81,7 +99,7 @@ namespace WPF_Client.Dbo
             _id = -1;
             _title = title;
             _idAuthor = author;
-            _date = System.DateTime.Now;
+            _date = DateTime.Now;
             _image = image;
             _text = text;
             _viewcount = 0;

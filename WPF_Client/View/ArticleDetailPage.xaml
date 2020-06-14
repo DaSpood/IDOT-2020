@@ -12,14 +12,16 @@
     <Grid>
         <ScrollViewer>
             <StackPanel Orientation="Vertical" Margin="10">
-                <TextBlock Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" FontSize="36" FontWeight="Bold"/>
-                <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
+                <TextBlock Text="{Binding TitleAuto, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Margin="20,0,20,10" HorizontalAlignment="Center">
                     <TextBlock Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" FontSize="10" FontStyle="Italic"/>
+                    <TextBlock Text="   "/>
                     <TextBlock Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" FontSize="10" FontStyle="Italic"/>
+                    <TextBlock Text="   "/>
                     <TextBlock Text="{Binding Viewcount, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" FontSize="10" FontStyle="Italic"/>
                 </StackPanel>
-                <Image Source="{Binding ImageSource, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,40,60" HorizontalAlignment="Stretch"/>
+                <Image Source="{Binding ImageSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Stretch="Uniform" MaxWidth="540"/>
+                <TextBlock Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,40,60" HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

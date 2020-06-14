@@ -15,7 +15,7 @@ GO
 CREATE TABLE [dbo].[T_User] (
 	[Id]		[bigint]		IDENTITY(1,1)	NOT NULL,
 	[Name]		[nvarchar](40)	UNIQUE			NOT NULL,
-	[Password]	[nvarchar](32)	UNIQUE			NOT NULL,
+	[Password]	[nvarchar](32)					NOT NULL,
 	[Admin]		[bit]			DEFAULT 0		NOT NULL,
 	CONSTRAINT [PK_T_User] PRIMARY KEY CLUSTERED
 	(
@@ -35,7 +35,7 @@ CREATE TABLE [dbo].[T_Article] (
 	[Id]		[bigint]		IDENTITY(1,1)	NOT NULL,
 	[Title]		[nvarchar](40),
 	[IdAuthor]	[bigint]						NOT NULL,
-	[Date]		[date]							NOT NULL,
+	[Date]		[datetime]						NOT NULL,
 	[Image]		[image]							NOT NULL,
 	[Text]		[text]							NOT NULL,
 	[Viewcount] [bigint]		DEFAULT 0		NOT NULL,

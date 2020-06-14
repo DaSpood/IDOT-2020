@@ -60,7 +60,7 @@ namespace WPF_Client.Viewmodel
 
         public bool SubmitStatus
         {
-            get { return _articleImage != null && _articleText != ""; }
+            get { return _articleImage != null && _articleText.Trim() != ""; }
         }
 
         public string MandatoryFieldStatus
@@ -69,11 +69,11 @@ namespace WPF_Client.Viewmodel
             {
                 if (_articleImage == null)
                 {
-                    if (_articleText == "")
+                    if (_articleText.Trim() == "")
                         return "Missing the article image and text";
                     return "Missing the article image";
                 }
-                else if (_articleText == "")
+                else if (_articleText.Trim() == "")
                     return "Missing the article text";
                 return "";
             }
