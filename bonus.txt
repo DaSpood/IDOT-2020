@@ -1,0 +1,11 @@
+- Systeme de login / admin:
+	- La page "new article" n'est disponible qu'en etant connecte avec un compte ayant le role administrateur.
+	- Une fenetre de connexion/enregistrement est accessible via un bouton en haut a droite.
+	- Les username et password n'acceptent que des caracteres alphanumeriques (lettres accentuees incluses)
+	- Une fois connecte, le username du compte s'affiche a cote de ce bouton ainsi que la mention "admin" si administrateur.
+	- Par soucis de simplicite, le mot de passe est sauvegarde en clair dans la base de donnee mais n'est pas recupere par le code hors de la couche DataAccess.
+	
+- Titre d'article:
+	- Pas un bonus, mais par soucis de lisibilite, les articles disposent egalement d'un titre.
+	- Ce titre est optionnel afin de respecter le sujet qui n'en demandait pas.
+	- Si le titre n'est pas renseigne par l'utilisateur, le titre "Article #{Article.ID}" lui est automatiquement assigne.
