@@ -28,6 +28,7 @@ namespace WPF_Client.Viewmodel
                 {
                     _loginUsername = value;
                     OnPropertyChange("LoginUsername");
+                    OnPropertyChange("LoginReady");
                 }
             }
         }
@@ -41,6 +42,7 @@ namespace WPF_Client.Viewmodel
                 {
                     _loginPassword = value;
                     OnPropertyChange("LoginPassword");
+                    OnPropertyChange("LoginReady");
                 }
             }
         }
@@ -54,6 +56,7 @@ namespace WPF_Client.Viewmodel
                 {
                     _registerUsername = value;
                     OnPropertyChange("RegisterUsername");
+                    OnPropertyChange("RegisterReady");
                 }
             }
         }
@@ -67,6 +70,7 @@ namespace WPF_Client.Viewmodel
                 {
                     _registerPassword = value;
                     OnPropertyChange("RegisterPassword");
+                    OnPropertyChange("RegisterReady");
                 }
             }
         }
@@ -84,6 +88,16 @@ namespace WPF_Client.Viewmodel
             }
         }
 
+        public bool LoginReady
+        {
+            get { return _loginUsername.Trim() != "" && _loginPassword.Trim() != ""; }
+        }
+
+        public bool RegisterReady
+        {
+            get { return _registerUsername.Trim() != "" && _registerPassword.Trim() != ""; }
+        }
+
         // Constructors and functions
 
         public CredentialViewModel()
@@ -97,7 +111,7 @@ namespace WPF_Client.Viewmodel
 
         public User GenerateRegisterUser()
         {
-            return new User(-1, _registerUsername, _registerPassword, _registerIsAdmin);
+            return new User(-1, _registerUsername.Trim(), _registerPassword.Trim(), _registerIsAdmin);
         }
 
         public User GenerateLoginUser()

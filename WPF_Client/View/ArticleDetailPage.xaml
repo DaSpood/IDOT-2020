@@ -21,6 +21,7 @@
                     <TextBlock Text="{Binding Viewcount, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" FontSize="10" FontStyle="Italic"/>
                 </StackPanel>
                 <Image Source="{Binding ImageSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Stretch="Uniform" MaxWidth="540"/>
+                <TextBlock Text="   "/>
                 <TextBlock Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,40,60" HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>

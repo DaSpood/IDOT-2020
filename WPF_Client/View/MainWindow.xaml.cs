@@ -23,10 +23,12 @@ namespace WPF_Client.View
     public partial class MainWindow : Window
     {
         private MainViewModel _viewModel;
+        private bool _onNewArticle;
 
         public MainWindow()
         {
             InitializeComponent();
+            _onNewArticle = false;
 
             // Setup viewmodel for bindings
             _viewModel = new MainViewModel();
@@ -46,19 +48,19 @@ namespace WPF_Client.View
             ArticleDetailPage page = new ArticleDetailPage();
             page.LoadArticle(article);
             PageLoader.Navigate(page);
-            ButtonToCredentials.IsEnabled = true;
+            _onNewArticle = false;
         }
 
         private void ButtonToHomePage_Click(object sender, RoutedEventArgs e)
         {
             PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleListPage.xaml", UriKind.RelativeOrAbsolute));
-            ButtonToCredentials.IsEnabled = true;
+            _onNewArticle = false;
         }
 
         private void ButtonToNewPage_Click(object sender, RoutedEventArgs e)
         {
             PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleWritePage.xaml", UriKind.RelativeOrAbsolute));
-            ButtonToCredentials.IsEnabled = false;
+            _onNewArticle = true;
         }
 
         private void ButtonToCredentials_Click(object sender, RoutedEventArgs e)
@@ -70,7 +72,11 @@ namespace WPF_Client.View
                     _viewModel.Login(credPopup.User);
             }
             else
+            {
                 _viewModel.Logout();
+                if (_onNewArticle)
+                    PageLoader.Navigate(new Uri("pack://application:,,,/View/ArticleListPage.xaml", UriKind.RelativeOrAbsolute));
+            }
         }
     }
 }

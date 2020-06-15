@@ -45,13 +45,21 @@ namespace WPF_Client.View
         {
             User generated = _viewmodel.GenerateLoginUser();
 
+            // Verify that the credentials use valid characters
+            if (!generated.Name.All(char.IsLetterOrDigit) || !generated.Password.All(char.IsLetterOrDigit))
+            {
+                MessageBox.Show("Error: Invalid credentials",
+                    "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             // Fetch the registered user to login immediately
             _user = BusinessManagement.User.GetUserByCredentials(generated.Name, generated.Password);
 
             // Warn the user if login failed
             if (_user == null)
             {
-                MessageBox.Show("Error: Invalid credentials.",
+                MessageBox.Show("Error: Invalid credentials",
                     "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -65,10 +73,18 @@ namespace WPF_Client.View
         {
             User generated = _viewmodel.GenerateRegisterUser();
 
+            // Verify that the credentials use valid characters
+            if (!generated.Name.All(char.IsLetterOrDigit) || !generated.Password.All(char.IsLetterOrDigit))
+            {
+                MessageBox.Show("Error: Only letters (including accents) and digits are allowed in your credentials",
+                    "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             // Verify that this user does not already exist
             if (BusinessManagement.User.GetUserByName(generated.Name) != null)
             {
-                MessageBox.Show("Error: This username is already taken.",
+                MessageBox.Show("Error: This username is already taken",
                     "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -76,13 +92,13 @@ namespace WPF_Client.View
             // Register the new user
             if (!BusinessManagement.User.AddUser(generated))
             {
-                MessageBox.Show("Error: Could not register. Please try again.",
+                MessageBox.Show("Error: Could not register. Please try again",
                     "Something happened...", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             // Fetch the registered user to login immediately and inform user
-            MessageBox.Show("Registration success ! You are now logged in !",
+            MessageBox.Show("Registration success! You are now logged in!",
                     "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             _user = BusinessManagement.User.GetUserByCredentials(generated.Name, generated.Password);
 
