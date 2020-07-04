@@ -1,4 +1,4 @@
-# IDOT-2020
+# WPF_Article_Browser
 
 ## Presentation
 
