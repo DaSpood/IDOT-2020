@@ -37,7 +37,7 @@ In order to make pages more dynamic, I use the MVVC design pattern.
 
 In its current implementation, the application will look for the database on the host computer. This means in order to use the application, you need to have an instance of SQL Server running on your computer, with the correct database loaded. If no database is found, the application will show an error message after startup, then close.
 
-The script that creates the database is `database.sql`, located in `IDOT-2020\WPF_Client\Resource\`
+The script that creates the database is `database.sql`, located in `WPF_Article_Browser\WPF_Client\Resource\`
 
 I do not have access to a second computer, so I have not been able to properly test that the application would find the database on a different computer.
 
