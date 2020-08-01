@@ -31,7 +31,7 @@ I personnaly went for the WPF Desktop Application. I also decided that the appli
 
 I did not have time to implement the HTML formating of the articles, but I did plan the login system from the start. I also decided to add authors to articles to better reflect the account system, and added article titles as well for a more comfortable experience.
 
-In order to make pages more dynamic, I use the MVVC design pattern.
+In order to make pages more dynamic, I use the MVVM design pattern.
 
 ## Database creation
 
